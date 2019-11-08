@@ -1,0 +1,9 @@
+node_modules
+web/public/_dist
+web/public/assets.json
+npm-debug.log
+.idea
+.DS_Store
+.env
+.nyc_output
+rollup-cache
