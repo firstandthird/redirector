@@ -130,3 +130,11 @@ tap.test('set status code for specific route (with params)', async(t) => {
   t.equal(redirect.location, '/newtest/param1/param2');
   t.end();
 });
+
+tap.test(' return false if no redirect found', async t => {
+  const redirect = getRedirect({
+    '/': '/it/works?test=1',
+  }, '/asdfas');
+  t.notOk(redirect);
+  t.end();
+});
