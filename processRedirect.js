@@ -1,7 +1,6 @@
 const paramReplacer = require('./paramReplacer');
 const querystring = require('query-string');
 const { parse } = require('url');
-const useragent = require('useragent');
 
 module.exports = (routeSpec, request, options, match = false) => {
   // get all the info for doing the redirect from the route spec:
@@ -17,9 +16,5 @@ module.exports = (routeSpec, request, options, match = false) => {
   }
   // let the url parser format the correct redirect Location:
   const location = redirectToUrl.format();
-  let from = request.path;
-  if (Object.keys(request.query).length !== 0) {
-    from = `${from}?${querystring.stringify(request.query)}`;
-  }
   return { statusCode, location };
 };

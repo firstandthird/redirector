@@ -91,7 +91,7 @@ tap.test(' set status code for specific route (without params)', async(t) => {
 tap.test(' / -> /to/{params*}', async(t) => {
   const redirect = getRedirect({
     '/{params*}': '/to/{params*}',
-  }, { path: '/some/params/here', query: {}, params: { params: 'some/params/here' } },
+  }, '/some/params/here',
   { appendQueryString: false });
   t.equal(redirect.statusCode, 301);
   t.equal(redirect.location, '/to/some/params/here');
@@ -101,7 +101,7 @@ tap.test(' / -> /to/{params*}', async(t) => {
 tap.test(' /from/{param}/?query=1 -> /to/{param}?query=1', async(t) => {
   const redirect = getRedirect({
     '/from/{param*}': '/to/{param*}',
-  }, { path: '/from/test?query=1', query: { query: 1 }, params: { param: 'test' } },
+  }, '/from/test?query=1',
   { appendQueryString: false });
   t.equal(redirect.statusCode, 301);
   t.equal(redirect.location, '/to/test?query=1');
@@ -111,7 +111,7 @@ tap.test(' /from/{param}/?query=1 -> /to/{param}?query=1', async(t) => {
 tap.test(' /test/{params*2} -> /newtest/{param*2}', async(t) => {
   const redirect = getRedirect({
     '/test/{param*2}': '/newtest/{param*2}'
-  }, { path: '/test/param1/param2', query: { }, params: { param: 'param1/param2' } },
+  }, '/test/param1/param2',
   { appendQueryString: false });
   t.equal(redirect.statusCode, 301);
   t.equal(redirect.location, '/newtest/param1/param2');
@@ -124,7 +124,7 @@ tap.test('set status code for specific route (with params)', async(t) => {
       destination: '/newtest/{param*2}',
       statusCode: 302
     }
-  }, { path: '/test/param1/param2', query: { }, params: { param: 'param1/param2' } },
+  }, '/test/param1/param2',
   { appendQueryString: false });
   t.equal(redirect.statusCode, 302);
   t.equal(redirect.location, '/newtest/param1/param2');

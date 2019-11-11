@@ -1,5 +1,5 @@
 {
-  "name": "redirector",
+  "name": "@firstandthird/redirector",
   "description": "redirects",
   "author": "First+Third",
   "license": "MIT",
@@ -25,7 +25,6 @@
   },
   "dependencies": {
     "@hapi/call": "^6.0.1",
-    "query-string": "^6.8.3",
-    "useragent": "^2.3.0"
+    "query-string": "^6.8.3"
   }
 }
