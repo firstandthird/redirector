@@ -1,7 +1,7 @@
 const paramReplacer = require('./paramReplacer');
 const querystring = require('query-string');
 const { parse } = require('url');
-// there is no user agent here
+
 module.exports = (routeSpec, request, options, match = false) => {
   // get all the info for doing the redirect from the route spec:
   const statusCode = routeSpec.statusCode || options.statusCode;
