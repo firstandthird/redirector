@@ -11,7 +11,7 @@ module.exports = (routeSpec, request, options, match = false) => {
   // lump all queries together:
   const allQueries = Object.assign({}, request.query, redirectToUrl.query);
   // if needed, add the queries to the parsed url:
-  if (Object.keys(allQueries).length > 0) {
+  if (options.appendQueryString && Object.keys(allQueries).length > 0) {
     redirectToUrl.search = `?${querystring.stringify(allQueries)}`;
   }
   // let the url parser format the correct redirect Location:

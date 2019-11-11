@@ -101,10 +101,19 @@ tap.test(' / -> /to/{params*}', async(t) => {
 tap.test(' /from/{param}/?query=1 -> /to/{param}?query=1', async(t) => {
   const redirect = getRedirect({
     '/from/{param*}': '/to/{param*}',
+  }, '/from/test?query=1');
+  t.equal(redirect.statusCode, 301);
+  t.equal(redirect.location, '/to/test?query=1');
+  t.end();
+});
+
+tap.test(' /from/{param}/?query=1 -> /to/{param} (appendQueryString is false)', async(t) => {
+  const redirect = getRedirect({
+    '/from/{param*}': '/to/{param*}',
   }, '/from/test?query=1',
   { appendQueryString: false });
   t.equal(redirect.statusCode, 301);
-  t.equal(redirect.location, '/to/test?query=1');
+  t.equal(redirect.location, '/to/test');
   t.end();
 });
 
