@@ -6,13 +6,11 @@ const defaults = {
   appendQueryString: true,
 };
 
-module.exports = (routeTable, request, pluginOptions) => {
-  if (typeof request === 'string') {
-    // transform path to get queries:
-    const query = request.includes('?') ? querystring.parse(request.split('?')[1]) : {};
-    const path = request.split('?')[0];
-    request = { path, query, params: {} };
-  }
+module.exports = (routeTable, path, pluginOptions) => {
+  // transform path to get queries:
+  const query = path.includes('?') ? querystring.parse(path.split('?')[1]) : {};
+  path = path.split('?')[0];
+  const request = { path, query, params: {} };
   // set up options:
   const options = Object.assign({}, defaults, pluginOptions);
   if (options.statusCode === 'temporary') {
