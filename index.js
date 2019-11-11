@@ -7,11 +7,6 @@ const defaults = {
 };
 
 module.exports = (routeTable, path, pluginOptions) => {
-  // transform path to get queries:
-  const query = path.includes('?') ? querystring.parse(path.split('?')[1]) : {};
-  path = path.split('?')[0];
-  const request = { path, query, params: {} };
-  // set up options:
   const options = Object.assign({}, defaults, pluginOptions);
   if (options.statusCode === 'temporary') {
     options.statusCode = 302;
@@ -27,12 +22,9 @@ module.exports = (routeTable, path, pluginOptions) => {
     }
     router.add({ method: 'get', path: source });
   });
-  const match = router.route('get', request.path, '');
-  if (match.params) {
-    request.params = match.params;
-  }
+  const match = router.route('get', path.split('?')[0], '');
   if (match.route) {
-    return processRedirect(routeTable[match.route], request, options);
+    return processRedirect(routeTable[match.route], path, options, match);
   }
   return false;
 };
