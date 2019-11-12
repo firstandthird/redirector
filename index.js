@@ -1,4 +1,3 @@
-const querystring = require('query-string');
 const processRedirect = require('./processRedirect');
 const Call = require('@hapi/call');
 const defaults = {
