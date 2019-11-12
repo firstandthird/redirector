@@ -138,9 +138,6 @@ tap.test('set status code for specific route (with params)', (t) => {
 });
 
 tap.test(' return false if no redirect found', t => {
-  const redirectTable = {
-    '/': '/it/works?test=1',
-  };
   const redirect = getRedirect({
     '/': '/it/works?test=1',
   }, '/asdfas');
